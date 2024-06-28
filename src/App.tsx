@@ -1,35 +1,91 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { IconButton, css } from "@mui/material";
+import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
+import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
+import "./App.css";
+import Portfolio from "./portfolio";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Carousel
+        autoFocus
+        useKeyboardArrows
+        showStatus={false}
+        showIndicators={false}
+        autoPlay={false}
+        renderArrowPrev={(onClickHandler, hasPrev) =>
+          hasPrev && (
+            <div
+              css={css`
+                display: inline-flex;
+                align-items: center;
+                position: absolute;
+                z-index: 2;
+                top: 0;
+                bottom: 0;
+                left: 15px;
+                &:hover {
+                  .MuiIconButton-root {
+                    opacity: 1;
+                  }
+                }
+              `}
+            >
+              <IconButton
+                css={css`
+                  opacity: 0;
+                  transition: opacity 100ms ease-in;
+                `}
+                onClick={onClickHandler}
+                title={"이전 슬라이드"}
+              >
+                <ArrowBackIosRoundedIcon fontSize="large" />
+              </IconButton>
+            </div>
+          )
+        }
+        renderArrowNext={(onClickHandler, hasNext) =>
+          hasNext && (
+            <div
+              css={css`
+                display: inline-flex;
+                align-items: center;
+                position: absolute;
+                z-index: 2;
+                top: 0;
+                bottom: 0;
+                right: 15px;
+                &:hover {
+                  .MuiIconButton-root {
+                    opacity: 1;
+                  }
+                }
+              `}
+            >
+              <IconButton
+                css={css`
+                  opacity: 0;
+                  transition: opacity 100ms ease-in;
+                `}
+                onClick={onClickHandler}
+                title={"다음 슬라이드"}
+              >
+                <ArrowForwardIosRoundedIcon fontSize="large" />
+              </IconButton>
+            </div>
+          )
+        }
+      >
+        {Portfolio.map((item, index) => (
+          <div key={index}>
+            <img src={item} alt={item} />
+          </div>
+        ))}
+      </Carousel>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
