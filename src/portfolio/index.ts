@@ -9,7 +9,6 @@ import portfolio_8 from "./portfolio_8.jpg";
 import portfolio_9 from "./portfolio_9.jpg";
 import portfolio_10 from "./portfolio_10.jpg";
 import portfolio_11 from "./portfolio_11.jpg";
-import portfolio_12 from "./portfolio_12.jpg";
 
 const Portfolio = [
   portfolio_1,
@@ -23,7 +22,6 @@ const Portfolio = [
   portfolio_9,
   portfolio_10,
   portfolio_11,
-  portfolio_12,
 ];
 
 export default Portfolio;
